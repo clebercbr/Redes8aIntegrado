@@ -7,15 +7,23 @@ ip link set eth0 up
 # Enlace: agregação de enlace
 
 # Enlace: VLAN
+vconfig add eth0 100
+ip link set eth0.100 up
+#
+vconfig add eth0 150
+ip link set eth0.150 up
+#
+vconfig add eth0 200
+ip link set eth0.200 up
 
 # Enlace: ponte
 
 # Enlace: *STP
 
 # Rede: endereçamento
-ip -4 addr add 10.0.100.254/24 dev eth0
-ip -4 addr add 10.0.150.254/24 dev eth0
-ip -4 addr add 10.0.200.254/24 dev eth0
+ip -4 addr add 10.0.100.254/24 dev eth0.100
+ip -4 addr add 10.0.150.254/24 dev eth0.150
+ip -4 addr add 10.0.200.254/24 dev eth0.200
 
 # Rede: roteamento
 sysctl -w net.ipv4.conf.all.forwarding=1
